@@ -4,39 +4,41 @@ using UnityEngine;
 
 public class Rabitt_attack : MonoBehaviour
 {
-     [Header("攻撃オブジェクト")] public GameObject attackObj;
+    [Header("攻撃オブジェクト")] public GameObject attackObj;
 
-     private Animator anim;
-     private float timer;
-     public float interval;
+    private Animator anim;
+    private float timer;
+    public float interval;
+    public float move;
+    private bool movef;
+    public float[] setp_y;
 
      // Start is called before the first frame update
      void Start()
      {
-        Attack();
-          /*anim = GetComponent<Animator>();
-          if (anim == null || attackObj == null)
-          {
-              Debug.Log("設定が足りません");
-              Destroy(this.gameObject);
-          }
-          else
-          {
-              attackObj.SetActive(false);
-          }*/
      }
 
      // Update is called once per frame
      void Update()
      {
-        if(timer > interval)
-        {
-            Attack();
-            timer = 0.0f;
-        }
-        else
-        {
-            timer += Time.deltaTime;
+        if(GManager.instance.GameStart){
+            if((timer> interval-move)&&(!movef)){
+                int ran=Random.Range(0, 3);
+                Debug.Log("move"+ ran);
+                transform.position = new Vector3(-6.76f, setp_y[ran] ,0);
+                movef=true;
+            }
+            if(timer > interval)
+            {
+                Debug.Log("Attack");
+                Attack();
+                timer = 0.0f;
+                movef=false;
+            }
+            else
+            {
+                timer += Time.deltaTime;
+            }
         }
      }
     public void Attack()
