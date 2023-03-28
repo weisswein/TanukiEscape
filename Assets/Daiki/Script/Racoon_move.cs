@@ -40,6 +40,10 @@ public class Racoon_move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(GManager.instance.currentHp<1){
+            //this.layer = 8;
+        }
+
         Transform myTransform = this.transform;
         //回転
         myTransform.Rotate(0,0,-1.0f*(rotate_speed+xspeed*3),Space.World);

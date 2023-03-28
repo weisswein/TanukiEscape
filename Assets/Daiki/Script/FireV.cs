@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fire : MonoBehaviour
+public class FireV : MonoBehaviour
 {
+    SpriteRenderer sr;
+    float transparency = 0.2f;
     [Header("スピード")] public float speed = 3.0f;
     [Header("最大移動距離")] public float maxDistance = 2.0f;
     private Rigidbody2D rb;
@@ -16,6 +18,7 @@ public class Fire : MonoBehaviour
     {
         this.gameObject.transform.parent = null;
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
         if (rb == null)
         {
             Destroy(this.gameObject);
@@ -38,6 +41,9 @@ public class Fire : MonoBehaviour
         {
             rb.MovePosition(transform.position -= transform.up * Time.deltaTime * speed*0.35f);
             rb.MovePosition(transform.position += transform.right * Time.deltaTime *speed);
+        }
+        if (d > maxDistance/4){
+            sr.color = new Color(sr.color.r , sr.color.g , sr.color.b , transparency);
         }
     }    
     private void OnCollisionEnter2D(Collision2D collision)

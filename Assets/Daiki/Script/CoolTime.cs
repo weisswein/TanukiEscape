@@ -5,6 +5,7 @@ using UnityEngine;
 public class CoolTime : MonoBehaviour
 {
     [Header("攻撃間隔")] public float timer;
+    [Header("アイコンオブジェクト")] public GameObject iconObj;
     private float interval=2.0f;
     private Vector3 posi;
     void Start()
@@ -21,6 +22,7 @@ public class CoolTime : MonoBehaviour
             if(timer < 0)
             {
                 GManager.instance.disguiseR=false;
+                iconObj.SetActive(false);
             }
             else{
                 timer -= Time.deltaTime;
@@ -34,6 +36,7 @@ public class CoolTime : MonoBehaviour
             {
                 timer = 2.0f;
                 GManager.instance.cool=true;
+                iconObj.SetActive(true);
             }
             else
             {

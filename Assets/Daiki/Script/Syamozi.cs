@@ -9,6 +9,7 @@ public class Syamozi : MonoBehaviour
     private string playerTag = "Player";
     private Rigidbody2D rb;
     private Vector3 defaultPos;
+    public int point;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +17,7 @@ public class Syamozi : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         if (rb == null)
         {
+            Debug.Log("生成失敗");
             Destroy(this.gameObject);
         }
         Vector3 kero = new Vector3(0.5007837f,0.5007837f,0);
@@ -43,7 +45,7 @@ public class Syamozi : MonoBehaviour
         if (collision.collider.tag == playerTag)
         {
            Debug.Log("しゃもじゲット");
-           GManager.instance.syamozi+=1;
+           GManager.instance.syamozi+=point;
            Destroy(this.gameObject);
         }
     }
