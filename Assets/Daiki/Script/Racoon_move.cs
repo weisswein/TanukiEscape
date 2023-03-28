@@ -10,7 +10,10 @@ public class Racoon_move : MonoBehaviour
     private bool push_flag;
     private bool dash=false;
     public AnimationCurve dashCurve;
+    private bool change=false;
     private float dashTime; 
+    private float hitTime; 
+    private int hitcount=0; 
     private float xspeed=0.0f; 
     private Rigidbody2D rb;
     private Vector3 defaultPos;
@@ -73,5 +76,25 @@ public class Racoon_move : MonoBehaviour
             }
         }
         transform.Translate (xspeed*0.1f, 0, 0,Space.World);
+
+        if(GManager.instance.hit){
+            if(hitTime>0.05f){
+                if(change){
+                    GetComponent<Renderer>().material.color = Color.white;
+                    change=!change;
+                }
+                else{
+                    GetComponent<Renderer>().material.color = Color.red;
+                    change=!change;
+                }
+                hitTime=0.0f;
+                hitcount+=1;
+            }
+            else hitTime+=Time.deltaTime;
+            if(hitcount>=4){
+                GManager.instance.hit=false;
+                hitcount=0;
+            }
+        }
     }
 }
