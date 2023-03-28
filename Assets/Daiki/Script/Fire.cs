@@ -14,12 +14,13 @@ public class Fire : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        this.gameObject.transform.parent = null;
         rb = GetComponent<Rigidbody2D>();
         if (rb == null)
         {
             Destroy(this.gameObject);
         }
-        Vector3 kero = new Vector3(-0.7596105f,0.8469791f,0);
+        Vector3 kero = new Vector3(-0.2690541f,0.26659f,0.2678221f);
         gameObject.transform.localScale = kero;
         defaultPos = transform.position;
     }

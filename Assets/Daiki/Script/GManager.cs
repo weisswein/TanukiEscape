@@ -8,6 +8,7 @@
     public int currentHp=20;
     public int maxHp=20;
     public bool GameStart = false;
+    public int syamozi = 0;
      private void Awake()
      {
          if(instance == null)

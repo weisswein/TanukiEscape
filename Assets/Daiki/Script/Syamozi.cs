@@ -40,6 +40,7 @@ public class Syamozi : MonoBehaviour
         if (collision.collider.tag == playerTag)
         {
            Debug.Log("しゃもじゲット");
+           GManager.instance.syamozi+=1;
            Destroy(this.gameObject);
         }
     }
