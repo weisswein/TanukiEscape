@@ -10,7 +10,13 @@
     public bool GameStart = false;
     public int syamozi = 0;
     public bool hit=false;
+    public bool dash=false;
+    public bool disguiseR=false;
+    public bool cool=false;
     public float[] setp_y;
+    public float setp_x;
+    public float dashTime;
+    public int lane_num;
      private void Awake()
      {
          if(instance == null)

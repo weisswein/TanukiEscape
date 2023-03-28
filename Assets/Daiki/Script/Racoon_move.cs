@@ -6,12 +6,9 @@ public class Racoon_move : MonoBehaviour
 {
     public float rotate_speed;
     public float setp_x;
-    private int lane_num=0;
     private bool push_flag;
-    private bool dash=false;
     public AnimationCurve dashCurve;
     private bool change=false;
-    private float dashTime; 
     private float hitTime; 
     private int hitcount=0; 
     private float xspeed=0.0f; 
@@ -29,55 +26,75 @@ public class Racoon_move : MonoBehaviour
         
     }
 
+    void OnEnable(){
+        Vector3 posi = this.transform.position;
+        if(posi.x<setp_x){
+            GManager.instance.dash=false;
+            xspeed=0.0f;
+            GManager.instance.dashTime=0.0f;
+            transform.position = new Vector3(setp_x, GManager.instance.setp_y[GManager.instance.lane_num] ,0);
+        }
+        else transform.position = new Vector3(GManager.instance.setp_x, GManager.instance.setp_y[GManager.instance.lane_num] ,0);
+    }
+
     // Update is called once per frame
     void Update()
     {
         Transform myTransform = this.transform;
         //回転
         myTransform.Rotate(0,0,-1.0f*(rotate_speed+xspeed*3),Space.World);
-        //
-        
         Vector3 posi = this.transform.position;
+        if(xspeed!=0)GManager.instance.setp_x=posi.x;
+        else GManager.instance.setp_x=setp_x;
         if (Input.GetKey (KeyCode.UpArrow)) {
-            if((!push_flag)&&(lane_num<2)){
-                lane_num+=1;
-                transform.position = new Vector3(posi.x, GManager.instance.setp_y[lane_num] ,0);
+            if((!push_flag)&&(GManager.instance.lane_num<2)){
+                GManager.instance.lane_num+=1;
+                transform.position = new Vector3(GManager.instance.setp_x, GManager.instance.setp_y[GManager.instance.lane_num] ,0);
                 push_flag=true;
             }
             
         }
         else if (Input.GetKey (KeyCode.DownArrow)) {
-            if((!push_flag)&&(lane_num>0)){
-                lane_num-=1;
-                transform.position = new Vector3(posi.x, GManager.instance.setp_y[lane_num] ,0);
+            if((!push_flag)&&(GManager.instance.lane_num>0)){
+                GManager.instance.lane_num-=1;
+                transform.position = new Vector3(GManager.instance.setp_x, GManager.instance.setp_y[GManager.instance.lane_num] ,0);
                 push_flag=true;
             }
             
         }
         else if (Input.GetKey (KeyCode.RightArrow)) {
-            if(!push_flag){
-                dash=true;
-                push_flag=true;
+            if(!GManager.instance.dash){
+                GManager.instance.dash=true;
                 defaultPos = transform.position;
-            }      
-            
-        }
-        else{
-            push_flag=false;
-        }
-        if(dash){ 
-            dashTime += Time.deltaTime*1.2f;
-            xspeed += dashCurve.Evaluate(dashTime);
-            if(posi.x<setp_x&&xspeed<0){
-                dash=false;
                 xspeed=0.0f;
-                dashTime=0.0f;
-                transform.position = new Vector3(setp_x, GManager.instance.setp_y[lane_num] ,0);
+                GManager.instance.dashTime=0.0f;
+            }      
+        }
+        else push_flag=false;
+        if(GManager.instance.dash){ 
+            GManager.instance.dashTime += Time.deltaTime*1.2f;
+            xspeed += dashCurve.Evaluate(GManager.instance.dashTime);
+            if(posi.x<setp_x&&xspeed<0){
+                GManager.instance.dash=false;
+                xspeed=0.0f;
+                GManager.instance.dashTime=0.0f;
+                transform.position = new Vector3(setp_x, GManager.instance.setp_y[GManager.instance.lane_num] ,0);
             }
         }
-        transform.Translate (xspeed*0.1f, 0, 0,Space.World);
+        if(posi.x>=9.05){
+            xspeed=-1f;
+            GManager.instance.dash=true;
+        }
+        else if(posi.x<setp_x){
+            GManager.instance.dash=false;
+            xspeed=0.0f;
+            GManager.instance.dashTime=0.0f;
+            transform.position = new Vector3(setp_x, GManager.instance.setp_y[GManager.instance.lane_num] ,0);
+        }
+        transform.Translate (xspeed*0.14f, 0, 0,Space.World);
 
         if(GManager.instance.hit){
+            //transform.position = new Vector3(GManager.instance.setp_x, GManager.instance.setp_y[GManager.instance.lane_num] ,0);
             if(hitTime>0.05f){
                 if(change){
                     GetComponent<Renderer>().material.color = Color.white;

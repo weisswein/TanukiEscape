@@ -23,13 +23,11 @@ public class Rabitt_attack : MonoBehaviour
         if(GManager.instance.GameStart){
             if((timer> interval-move)&&(!movef)){
                 int ran=Random.Range(0, 3);
-                Debug.Log("move"+ ran);
                 transform.position = new Vector3(-6.76f, GManager.instance.setp_y[ran] ,0);
                 movef=true;
             }
             if(timer > interval)
             {
-                Debug.Log("Attack");
                 Attack();
                 timer = 0.0f;
                 movef=false;

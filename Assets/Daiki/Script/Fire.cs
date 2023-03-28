@@ -46,7 +46,7 @@ public class Fire : MonoBehaviour
         {
            Debug.Log("炎にぶつかった");
            Destroy(this.gameObject);
-           if(!GManager.instance.hit){
+           if(!GManager.instance.hit&&!GManager.instance.disguiseR){
                 //現在のHPからダメージを引く
                 GManager.instance.currentHp -= 1;
                 GManager.instance.hit=true;
