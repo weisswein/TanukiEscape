@@ -12,11 +12,14 @@ public class Syamozi : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        this.gameObject.transform.parent = null;
         rb = GetComponent<Rigidbody2D>();
         if (rb == null)
         {
             Destroy(this.gameObject);
         }
+        Vector3 kero = new Vector3(0.5007837f,0.5007837f,0);
+        gameObject.transform.localScale = kero;
         
     }
 

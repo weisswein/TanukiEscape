@@ -9,6 +9,7 @@
     public int maxHp=20;
     public bool GameStart = false;
     public int syamozi = 0;
+    public float[] setp_y;
      private void Awake()
      {
          if(instance == null)

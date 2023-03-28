@@ -6,7 +6,6 @@ public class Racoon_move : MonoBehaviour
 {
     public float rotate_speed;
     public float setp_x;
-    public float[] setp_y;
     private int lane_num=0;
     private bool push_flag;
     private bool dash=false;
@@ -32,14 +31,14 @@ public class Racoon_move : MonoBehaviour
     {
         Transform myTransform = this.transform;
         //回転
-        myTransform.Rotate(0,0,-1.0f*(rotate_speed+xspeed),Space.World);
+        myTransform.Rotate(0,0,-1.0f*(rotate_speed+xspeed*3),Space.World);
         //
         
         Vector3 posi = this.transform.position;
         if (Input.GetKey (KeyCode.UpArrow)) {
             if((!push_flag)&&(lane_num<2)){
                 lane_num+=1;
-                transform.position = new Vector3(posi.x, setp_y[lane_num] ,0);
+                transform.position = new Vector3(posi.x, GManager.instance.setp_y[lane_num] ,0);
                 push_flag=true;
             }
             
@@ -47,7 +46,7 @@ public class Racoon_move : MonoBehaviour
         else if (Input.GetKey (KeyCode.DownArrow)) {
             if((!push_flag)&&(lane_num>0)){
                 lane_num-=1;
-                transform.position = new Vector3(posi.x, setp_y[lane_num] ,0);
+                transform.position = new Vector3(posi.x, GManager.instance.setp_y[lane_num] ,0);
                 push_flag=true;
             }
             
@@ -70,7 +69,7 @@ public class Racoon_move : MonoBehaviour
                 dash=false;
                 xspeed=0.0f;
                 dashTime=0.0f;
-                transform.position = new Vector3(setp_x, setp_y[lane_num] ,0);
+                transform.position = new Vector3(setp_x, GManager.instance.setp_y[lane_num] ,0);
             }
         }
         transform.Translate (xspeed*0.1f, 0, 0,Space.World);

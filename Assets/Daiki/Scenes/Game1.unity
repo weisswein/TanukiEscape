@@ -264,6 +264,10 @@ MonoBehaviour:
   maxHp: 20
   GameStart: 0
   syamozi: 0
+  setp_y:
+  - -2.56
+  - 0.28
+  - 3.56
 --- !u!1 &331945813
 GameObject:
   m_ObjectHideFlags: 0
@@ -463,7 +467,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!58 &385451609
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -539,13 +543,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 385451608}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.27, y: -3.24, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.059999943, y: -3.52, z: 0}
   m_LocalScale: {x: 0.5007837, y: 0.5007837, z: 0.5007837}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_Father: {fileID: 1111806392}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &385451612
 Rigidbody2D:
@@ -1050,10 +1054,6 @@ MonoBehaviour:
   attackObj: {fileID: 1247710650}
   interval: 1
   move: 0.2
-  setp_y:
-  - -2.56
-  - 0.28
-  - 3.56
 --- !u!1 &1093478644
 GameObject:
   m_ObjectHideFlags: 0
@@ -1131,6 +1131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1111806392}
+  - component: {fileID: 1111806393}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -1149,10 +1150,26 @@ Transform:
   m_LocalPosition: {x: 6.33, y: 0.28, z: 4671.7383}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 385451611}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1111806393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111806391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03d888c19a2d5274f96e3b7744291b76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  getObj: {fileID: 385451608}
+  interval: 4
+  move: 0
 --- !u!1 &1247710650
 GameObject:
   m_ObjectHideFlags: 0
@@ -1252,7 +1269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ff0a469f1dde340bb9658562504c43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 6
   maxDistance: 20
 --- !u!50 &1247710654
 Rigidbody2D:
@@ -1325,10 +1342,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotate_speed: 1
   setp_x: 1.39
-  setp_y:
-  - -2.56
-  - 0.28
-  - 3.56
   dashCurve:
     serializedVersion: 2
     m_Curve:

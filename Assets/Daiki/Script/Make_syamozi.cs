@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rabitt_attack : MonoBehaviour
+public class Make_syamozi : MonoBehaviour
 {
-    [Header("攻撃オブジェクト")] public GameObject attackObj;
+    [Header("攻撃オブジェクト")] public GameObject getObj;
 
     private Animator anim;
     private float timer;
@@ -23,13 +23,11 @@ public class Rabitt_attack : MonoBehaviour
         if(GManager.instance.GameStart){
             if((timer> interval-move)&&(!movef)){
                 int ran=Random.Range(0, 3);
-                Debug.Log("move"+ ran);
-                transform.position = new Vector3(-6.76f, GManager.instance.setp_y[ran] ,0);
+                transform.position = new Vector3(6.27f, GManager.instance.setp_y[ran] ,0);
                 movef=true;
             }
             if(timer > interval)
             {
-                Debug.Log("Attack");
                 Attack();
                 timer = 0.0f;
                 movef=false;
@@ -42,10 +40,10 @@ public class Rabitt_attack : MonoBehaviour
      }
     public void Attack()
     {
-        GameObject g = Instantiate(attackObj);
+        GameObject g = Instantiate(getObj);
         g.transform.SetParent(transform);
-        g.transform.position = attackObj.transform.position;
-        g.transform.rotation = attackObj.transform.rotation;
+        g.transform.position = getObj.transform.position;
+        g.transform.rotation = getObj.transform.rotation;
         g.SetActive(true);
     }   
 }
