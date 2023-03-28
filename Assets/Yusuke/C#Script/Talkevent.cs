@@ -7,23 +7,24 @@ public class Talkevent : MonoBehaviour
         [SerializeField] [Header("メッセージ（キャラ名）")] private string[] msgCaraName;
         [SerializeField] [Header("メッセージ（内容）")] private string[] msgContent;
         [SerializeField] GameObject[] charactersprite;
-        [SerializeField] int[] finalturn;
+        [SerializeField] int finalturn;
         public static bool Talkable = true;
-        int counter=0;
-        int counter2=0;
         GameObject objCanvas = null;
 
         void Start()
         {
             objCanvas = gameObject.transform.Find("Canvas").gameObject;
             objCanvas.SetActive(false);
+            charactersprite[0].SetActive(true);
+            charactersprite[1].SetActive(true);
+            charactersprite[2].SetActive(false);
         }
 
         void Update()
         {
-            if (Talkable && counter == 0)
+            if (Talkable )
             {
-                counter++;
+                Talkable=false;
                 StartCoroutine("ShowLog");
             }
         }
@@ -35,15 +36,16 @@ public class Talkevent : MonoBehaviour
 
             objCanvas.SetActive(true);
 
-            for (int i = charactersprite.GetLowerBound(0); i <= charactersprite.GetUpperBound(0); i++){
-                counter2=finalturn[i];
-            }
 
             for (int i = msgCaraName.GetLowerBound(0); i <= msgCaraName.GetUpperBound(0); i++)
             {
                 objCaraName.GetComponent<Text>().text = msgCaraName[i];
                 objContent.GetComponent<Text>().text = msgContent[i];
-
+                if(finalturn==i){
+                    charactersprite[0].SetActive(false);
+                    charactersprite[1].SetActive(false);
+                    charactersprite[2].SetActive(true);
+                }
                 yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
                 yield return null;
             }
