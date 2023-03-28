@@ -2,15 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fire : MonoBehaviour
+public class Syamozi : MonoBehaviour
 {
     [Header("スピード")] public float speed = 3.0f;
-    [Header("最大移動距離")] public float maxDistance = 2.0f;
+    [Header("最大移動距離")] public float maxDistance = 20.0f;
+    private string playerTag = "Player";
     private Rigidbody2D rb;
     private Vector3 defaultPos;
-    private int mH;
-    private int mV;
-    private string playerTag = "Player";
     // Start is called before the first frame update
     void Start()
     {
@@ -19,9 +17,7 @@ public class Fire : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-        Vector3 kero = new Vector3(-0.7596105f,0.8469791f,0);
-        gameObject.transform.localScale = kero;
-        defaultPos = transform.position;
+        
     }
 
     // Update is called once per frame
@@ -35,18 +31,16 @@ public class Fire : MonoBehaviour
         }
         else
         {
-            rb.MovePosition(transform.position -= transform.up * Time.deltaTime * speed*0.35f);
-            rb.MovePosition(transform.position += transform.right * Time.deltaTime *speed);
+            rb.MovePosition(transform.position -= transform.right * Time.deltaTime *speed);
         }
+        
     }    
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.collider.tag == playerTag)
         {
-           Debug.Log("炎にぶつかった");
+           Debug.Log("しゃもじゲット");
            Destroy(this.gameObject);
-           //現在のHPからダメージを引く
-           GManager.instance.currentHp -= 1;
         }
     }
 }
