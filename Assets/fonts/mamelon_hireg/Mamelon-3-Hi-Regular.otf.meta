@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: 4b4601714733a89498c2fa619e20d7ea
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Mamelon
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: a8aa9020418ffe54d988cc9dad30ff38, type: 3}
+  - {fileID: 12800000, guid: 573db4c7e2a5b8340b0398c499229d29, type: 3}
+  - {fileID: 12800000, guid: 87fccda79e68d55499aa4549ca62c5c3, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
