@@ -1,22 +1,3 @@
-fileFormatVersion: 2
-guid: 87fccda79e68d55499aa4549ca62c5c3
-TrueTypeFontImporter:
-  externalObjects: {}
-  serializedVersion: 4
-  fontSize: 16
-  forceTextureCase: -2
-  characterSpacing: 0
-  characterPadding: 1
-  includeFontData: 1
-  fontNames:
-  - Mamelon
-  fallbackFontReferences:
-  - {fileID: 12800000, guid: 573db4c7e2a5b8340b0398c499229d29, type: 3}
-  customCharacters: 
-  fontRenderingMode: 0
-  ascentCalculationMode: 1
-  useLegacyBoundsCalculation: 0
-  shouldRoundAdvanceValue: 1
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
+version https://git-lfs.github.com/spec/v1
+oid sha256:72d644116e30ef0f11154230268d27115bacfc539d4fafa11ce76285ca892465
+size 563
