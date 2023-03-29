@@ -45,8 +45,8 @@ public class FireI : MonoBehaviour
         if ((d > change)&&!move){ 
             int ran=Random.Range(0, 3);
             Vector3 posi = this.transform.position;
-            if((int)posi.y==(int)GManager.instance.setp_y[ran]) ran=(ran+1)%3;
-            transform.position = new Vector3(posi.x, GManager.instance.setp_y[ran] ,0);
+            if(Mathf.Abs(posi.y-GManager.instance.setp_yf[ran])<0.5) ran=(ran+1)%3;
+            transform.position = new Vector3(posi.x, GManager.instance.setp_yf[ran],0);
             move=true;
         }
     }    

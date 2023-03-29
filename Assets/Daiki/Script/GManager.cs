@@ -16,6 +16,8 @@
     public bool cool=false;
     public bool end=false;
     public float[] setp_y;
+    public float[] setp_ye;
+    public float[] setp_yf;
     public float setp_x;
     public float dashTime;
     public int lane_num;

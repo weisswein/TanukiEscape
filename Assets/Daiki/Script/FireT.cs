@@ -42,7 +42,7 @@ public class FireT : MonoBehaviour
         }
         if ((d > change)&&!move){ 
             Vector3 posi = this.transform.position;
-            transform.position = new Vector3(posi.x, GManager.instance.setp_y[GManager.instance.lane_num] ,0);
+            transform.position = new Vector3(posi.x, GManager.instance.setp_yf[GManager.instance.lane_num] ,0);
             move=true;
         }
     }    
