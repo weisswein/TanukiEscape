@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Fire : MonoBehaviour
 {
-    [Header("スピード")] public float speed = 3.0f;
     [Header("最大移動距離")] public float maxDistance = 2.0f;
     private Rigidbody2D rb;
     private Vector3 defaultPos;
@@ -36,18 +35,23 @@ public class Fire : MonoBehaviour
         }
         else
         {
-            rb.MovePosition(transform.position -= transform.up * Time.deltaTime * speed*0.35f);
-            rb.MovePosition(transform.position += transform.right * Time.deltaTime *speed);
+            rb.MovePosition(transform.position -= transform.up * Time.deltaTime * GManager.instance.speed*0.35f);
+            rb.MovePosition(transform.position += transform.right * Time.deltaTime *GManager.instance.speed);
         }
     }    
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.tag == playerTag)
         {
-           Debug.Log("炎にぶつかった");
            Destroy(this.gameObject);
-           //現在のHPからダメージを引く
-           GManager.instance.currentHp -= 1;
+           if(!GManager.instance.hit&&!GManager.instance.disguiseR){
+                if(GManager.instance.currentHp<1){
+                    Debug.Log("ゲームオーバー");
+                } 
+                //現在のHPからダメージを引く
+                GManager.instance.currentHp -= 1;
+                GManager.instance.hit=true;
+           }
         }
     }
 }

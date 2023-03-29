@@ -20,17 +20,16 @@ public class Rabitt_attack : MonoBehaviour
      // Update is called once per frame
      void Update()
      {
-        if(GManager.instance.GameStart){
+        if((GManager.instance.GameStart)&&(!GManager.instance.end)){
             if((timer> interval-move)&&(!movef)){
                 int ran=Random.Range(0, 3);
-                Debug.Log("move"+ ran);
-                transform.position = new Vector3(-6.76f, GManager.instance.setp_y[ran] ,0);
+                transform.position = new Vector3(-6.76f, GManager.instance.setp_ye[ran] ,0);
                 movef=true;
             }
             if(timer > interval)
             {
-                Debug.Log("Attack");
                 Attack();
+                interval-=0.01f;
                 timer = 0.0f;
                 movef=false;
             }
