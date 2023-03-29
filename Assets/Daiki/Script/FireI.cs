@@ -2,23 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireV : MonoBehaviour
+public class FireI : MonoBehaviour
 {
-    SpriteRenderer sr;
-    float transparency = 0.15f;
+    public GameObject attackObj;
     [Header("最大移動距離")] public float maxDistance = 2.0f;
-    public float change=1.3f;
     private Rigidbody2D rb;
     private Vector3 defaultPos;
+    public float change=1.3f;
     private int mH;
     private int mV;
     private string playerTag = "Player";
+    private bool move=false;
     // Start is called before the first frame update
     void Start()
     {
         this.gameObject.transform.parent = null;
+        Attack();
         rb = GetComponent<Rigidbody2D>();
-        sr = GetComponent<SpriteRenderer>();
         if (rb == null)
         {
             Destroy(this.gameObject);
@@ -42,8 +42,12 @@ public class FireV : MonoBehaviour
             rb.MovePosition(transform.position -= transform.up * Time.deltaTime * GManager.instance.speed*0.35f);
             rb.MovePosition(transform.position += transform.right * Time.deltaTime *GManager.instance.speed);
         }
-        if (d > change){
-            sr.color = new Color(sr.color.r , sr.color.g , sr.color.b , transparency);
+        if ((d > change)&&!move){ 
+            int ran=Random.Range(0, 3);
+            Vector3 posi = this.transform.position;
+            if((int)posi.y==(int)GManager.instance.setp_y[ran]) ran=(ran+1)%3;
+            transform.position = new Vector3(posi.x, GManager.instance.setp_y[ran] ,0);
+            move=true;
         }
     }    
     private void OnCollisionEnter2D(Collision2D collision)
@@ -61,4 +65,12 @@ public class FireV : MonoBehaviour
            }
         }
     }
+    public void Attack()
+    {
+        GameObject g = Instantiate(attackObj);
+        g.transform.SetParent(transform);
+        g.transform.position = attackObj.transform.position;
+        g.transform.rotation = attackObj.transform.rotation;
+        g.SetActive(true);
+    }   
 }

@@ -19,19 +19,15 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
-        if(GManager.instance.GameStart){
+        if((GManager.instance.GameStart)&&(!GManager.instance.end)){
+            if((int)timer!=(int)(timer+=Time.deltaTime)&&(GManager.instance.speed<13))GManager.instance.speed+=(timer/300);
             timer += Time.deltaTime;
-            var span = new TimeSpan(0, 0, (int)timer);
+            var span = new TimeSpan(0, 0, 70-(int)timer);
             timeText.text = span.ToString(@"mm\:ss");
-
-            if (timer <= 0)
-            {
-                // 0秒になったときの処理
-                Debug.Log("Go Next Scene!");
-            }
+            if(timer>70.0f) GManager.instance.end=true;
         }
         else{
-            if(timer > 2.0){
+            if(timer > 2.0f){
                 GManager.instance.GameStart=true;
                 timer=0f;
                 Debug.Log("START!");
