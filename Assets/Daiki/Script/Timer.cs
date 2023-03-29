@@ -22,8 +22,9 @@ public class Timer : MonoBehaviour
         if((GManager.instance.GameStart)&&(!GManager.instance.end)){
             if((int)timer!=(int)(timer+=Time.deltaTime)&&(GManager.instance.speed<13))GManager.instance.speed+=(timer/300);
             timer += Time.deltaTime;
-            var span = new TimeSpan(0, 0, 70-(int)timer);
-            timeText.text = span.ToString(@"mm\:ss");
+            //var span = new TimeSpan(0, 0, 70-(int)timer);
+            timeText.text = ""+(70-(int)timer);
+            //span.ToString(@"mm\:ss");
             if(timer>70.0f) GManager.instance.end=true;
         }
         else{
